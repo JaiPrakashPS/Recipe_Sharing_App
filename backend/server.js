@@ -16,23 +16,13 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use("https://recipe-sharing-app-kappa.vercel.app/api/auth", authRoutes);
-app.use("https://recipe-sharing-app-kappa.vercel.app/api/recipes", recipesRoutes);
-
+app.use("/api/auth", authRoutes);       // ✅ FIXED
+app.use("/api/recipes", recipesRoutes); // ✅ FIXED
 
 app.use((err, req, res, next) => {
   console.error("Server error:", err.message, err.stack);
   res.status(500).json({ message: "Server error" });
 });
-
-// const __dirname = path.resolve();
-
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "/frontend/dist")));
-//   app.get("/{*splat}", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-//   });
-// }
 
 const startServer = async () => {
   try {
