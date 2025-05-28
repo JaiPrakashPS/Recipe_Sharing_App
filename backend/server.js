@@ -11,11 +11,13 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-app.use(cors("https://recipe-sharing-app-kappa.vercel.app/"));
+app.use(cors({
+  origin: "https://recipe-sharing-app-kappa.vercel.app"
+}));
 app.use(express.json());
 
-app.use("/api/auth", authRoutes);
-app.use("/api/recipes", recipesRoutes);
+app.use("https://recipe-sharing-app-kappa.vercel.app/api/auth", authRoutes);
+app.use("https://recipe-sharing-app-kappa.vercel.app/api/recipes", recipesRoutes);
 
 
 app.use((err, req, res, next) => {
