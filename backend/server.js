@@ -12,8 +12,10 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors({
-  origin: "https://recipe-sharing-app-kappa.vercel.app"
+  origin: [ "https://recipe-sharing-app-kappa.vercel.app", "http://localhost:5173" ],
+  credentials: true
 }));
+
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);       // ✅ FIXED
