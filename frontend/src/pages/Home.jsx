@@ -19,7 +19,7 @@ const Home = () => {
       try {
         const token = localStorage.getItem("token");
         const recipeRes = await axios.get(
-          `/api/recipes/${
+          `${API_URL}/api/recipes/${
             category && category !== "All" ? `?category=${category}` : ""
           }`,
           {
@@ -33,7 +33,7 @@ const Home = () => {
 
         if (user && token) {
           try {
-            const favoritesRes = await axios.get("/api/recipes/favorites", {
+            const favoritesRes = await axios.get(`${API_URL}/api/recipes/favorites`, {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
@@ -81,14 +81,14 @@ const Home = () => {
         },
       };
       if (isFavorited) {
-        await axios.delete(`/api/recipes/${recipeId}/favorite`, config);
+        await axios.delete(`${API_URL}/api/recipes/${recipeId}/favorite`, config);
         alert("Recipe removed from favorites!");
       } else {
-        await axios.post(`/api/recipes/${recipeId}/favorite`, {}, config);
+        await axios.post(`${API_URL}/api/recipes/${recipeId}/favorite`, {}, config);
         alert("Recipe added to favorites!");
       }
 
-      const favoritesRes = await axios.get("/api/recipes/favorites", config);
+      const favoritesRes = await axios.get(`${API_URL}/api/recipes/favorites`, config);
       const favoriteIds = favoritesRes.data.map((recipe) => recipe._id.toString());
 
       const updatedRecipes = recipes.map((recipe) => ({

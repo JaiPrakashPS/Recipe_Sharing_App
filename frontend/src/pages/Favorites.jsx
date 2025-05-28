@@ -17,7 +17,7 @@ const Favorites = () => {
       try {
         console.log("Fetching favorites from URL: /api/recipes/favorites");
         console.log("Fetching favorites with token:", localStorage.getItem("token"));
-        const res = await axios.get("/api/recipes/favorites", {
+        const res = await axios.get(`${API_URL}/api/recipes/favorites`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         console.log("Favorites API response:", res.data);
@@ -36,7 +36,7 @@ const Favorites = () => {
   const handleFavoriteToggle = async (recipeId) => {
     try {
       console.log("Removing favorite with recipeId:", recipeId);
-      await axios.delete(`/api/recipes/${recipeId}/favorite`, {
+      await axios.delete(`${API_URL}/api/recipes/${recipeId}/favorite`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setFavorites((prev) =>

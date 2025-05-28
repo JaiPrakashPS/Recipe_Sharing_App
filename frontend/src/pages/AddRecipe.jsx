@@ -74,7 +74,7 @@ const AddRecipe = () => {
         formDataToSend.append("photo", formData.photo);
       }
 
-      await axios.post("/api/recipes", formDataToSend, {
+      await axios.post(`${API_URL}/api/recipes`, formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

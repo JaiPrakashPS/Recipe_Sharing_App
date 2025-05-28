@@ -75,7 +75,7 @@ const EditRecipe = () => {
         formDataToSend.append("photo", formData.photo);
       }
 
-      await axios.put(`/api/recipes/${id}`, formDataToSend, {
+      await axios.put(`{API_URL}/api/recipes/${id}`, formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -91,7 +91,7 @@ const EditRecipe = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await axios.get(`/api/recipes/${id}`);
+        const res = await axios.get(`${API_URL}/api/recipes/${id}`);
         setFormData({
           title: res.data.title,
           ingredients: res.data.ingredients.length > 0 ? res.data.ingredients : [""],

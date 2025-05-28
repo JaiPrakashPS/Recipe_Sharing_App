@@ -25,7 +25,7 @@ const Profile = () => {
           return;
         }
 
-        const res = await axios.get(`/api/recipes/users/${user._id}/recipes`, {
+        const res = await axios.get(`${API_URL}/api/recipes/users/${user._id}/recipes`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -84,7 +84,7 @@ const handlePhotoUpload = async (e) => {
       file: file.name,
       size: file.size,
     });
-    const res = await axios.put("/api/recipes/users/profile/photo", formData, {
+    const res = await axios.put(`${API_URL}/api/recipes/users/profile/photo`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
@@ -94,7 +94,7 @@ const handlePhotoUpload = async (e) => {
     updateUserProfilePhoto(res.data.profilePhoto);
 
     // Fetch updated user data
-    const userRes = await axios.get("/api/recipes/users/profile", {
+    const userRes = await axios.get(`${API_URL}/api/recipes/users/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     updateUserProfilePhoto(userRes.data.profilePhoto); // Update \n\n\t\t\t\t\t\t\t\tUpdate user in AuthContext

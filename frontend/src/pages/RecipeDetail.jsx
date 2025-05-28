@@ -20,7 +20,7 @@ const RecipeDetail = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await axios.get(`/api/recipes/${id}`);
+        const res = await axios.get(`${API_URL}/api/recipes/${id}`);
         setRecipe(res.data);
       } catch (err) {
         console.error("Error fetching recipe:", err);
@@ -50,7 +50,7 @@ const RecipeDetail = () => {
     }
 
     try {
-      const res = await axios.post(`/api/recipes/${id}/reviews`, {
+      const res = await axios.post(`${API_URL}/api/recipes/${id}/reviews`, {
         rating: Number(reviewForm.rating),
         description: reviewForm.description,
       });
@@ -82,7 +82,7 @@ const RecipeDetail = () => {
     }
 
     try {
-      const res = await axios.post(`/api/recipes/${id}/reviews/${reviewId}/replies`, {
+      const res = await axios.post(`${API_URL}/api/recipes/${id}/reviews/${reviewId}/replies`, {
         description,
       });
       setRecipe(res.data);
@@ -94,7 +94,7 @@ const RecipeDetail = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/recipes/${id}`);
+      await axios.delete(`${API_URL}/api/recipes/${id}`);
       console.log("Recipe deleted successfully");
       navigate("/");
     } catch (error) {
